@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from AdventureTime import models
+
+admin.site.register(models.Country)
+admin.site.register(models.Place)
