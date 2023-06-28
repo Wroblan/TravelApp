@@ -12,7 +12,6 @@ class Currency(models.Model):
     currency = models.CharField(max_length=3)
     def __str__(self):
         return self.currency
-
 class Country(models.Model):
   name_country = models.CharField(max_length=60)
   desctription = models.CharField(max_length=200)
