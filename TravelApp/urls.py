@@ -20,4 +20,5 @@ from AdventureTime import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
+    path('jezyk/read', views.CountryReadView.as_view(), name='country_read'),
 ]
