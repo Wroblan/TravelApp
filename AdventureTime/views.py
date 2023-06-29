@@ -12,7 +12,7 @@ class CountryReadView(View):
   def get(self, request):
       return render(request, template_name='country_read.html', context={'dane': models.Country.objects.all()})
 
-class CountryCreateView(View):
+class CountryCreateView(CreateView):
     success_url = reverse_lazy('country-read')
     form_class = forms.CountryForm
     model = models.Country
