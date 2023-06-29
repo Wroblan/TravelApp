@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+{% for country in dane %}
+  <li> {{country.name_country}} </li>
+  <li> {{country.desctription}} </li>
+  <li> {{country.capital_city}} </li>
+  <li> {{country.language}} </li>
+  <li> {{country.currency}} </li>
+{% endfor %}
+</ul>
+</body>
+</html>
