@@ -37,7 +37,7 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 class Rating(models.Model):
-    rating = models.IntegerField(max_length=6)
+    rating = models.IntegerField()
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
