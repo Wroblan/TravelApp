@@ -13,7 +13,7 @@ class CountryReadView(View):
       return render(request, template_name='country_read.html', context={'dane': models.Country.objects.all()})
 
 class CountryCreateView(CreateView):
-    success_url = reverse_lazy('country-read')
+    success_url = reverse_lazy('country_read')
     form_class = forms.CountryForm
     model = models.Country
     template_name = 'country_create.html'
@@ -29,11 +29,11 @@ class CountryCreateView(CreateView):
         )
         return result
 class CountryUpdateView(UpdateView):
-    success_url = reverse_lazy('country-read')
+    success_url = reverse_lazy('country_read')
     form_class = forms.CountryForm
     model = models.Country
     template_name = 'country_create.html'
 class CountryDeleteView(DeleteView):
-    success_url = reverse_lazy('country-read')
+    success_url = reverse_lazy('country_read')
     model = models.Country
     template_name = 'country_delete.html'
