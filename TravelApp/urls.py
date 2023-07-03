@@ -20,6 +20,8 @@ from AdventureTime import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hello/', views.hello),
-    path('jezyk/read', views.CountryReadView.as_view(), name='country_read'),
-    path('jezyk/create', views.CountryCreateView.as_view(), name='country-create'),
+    path('country/read', views.CountryReadView.as_view(), name='country_read'),
+    path('country/create', views.CountryCreateView.as_view(), name='country-create'),
+    path('Country-update/<pk>', views.CountryUpdateView.as_view(), name="country_update"),
+    path('Country-delete/<pk>', views.CountryDeleteView.as_view(), name="country_delete"),
 ]
