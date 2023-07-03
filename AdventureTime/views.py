@@ -28,12 +28,12 @@ class CountryCreateView(CreateView):
 
         )
         return result
-    class CountryUpdateView(UpdateView):
-        success_url = reverse_lazy('country-read')
-        form_class = forms.CountryForm
-        model = models.Country
-        template_name = 'country_create.html'
-    class CountryDeleteView(DeleteView):
-        success_url = reverse_lazy('country-read')
-        model = models.Country
-        template_name = 'country_delete.html'
+class CountryUpdateView(UpdateView):
+    success_url = reverse_lazy('country-read')
+    form_class = forms.CountryForm
+    model = models.Country
+    template_name = 'country_create.html'
+class CountryDeleteView(DeleteView):
+    success_url = reverse_lazy('country-read')
+    model = models.Country
+    template_name = 'country_delete.html'
