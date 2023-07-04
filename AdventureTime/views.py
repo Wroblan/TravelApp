@@ -37,3 +37,22 @@ class CountryDeleteView(DeleteView):
     success_url = reverse_lazy('country_read')
     model = models.Country
     template_name = 'country_delete.html'
+
+class PlaceReadView(View):
+  def get(self, request):
+      return render(request, template_name='place_read.html', context={'dane': models.Place.objects.all()})
+
+class PlaceCreateView(CreateView):
+    success_url = reverse_lazy('place_read')
+    form_class = forms.PlaceForm
+    model = models.Place
+    template_name = 'place_create.html'
+    # def form_valid(self, form):
+    #     result = super().form_valid(form)
+    #     models.Place.objects.create(
+    #         name_place=form.cleaned_data['name_place'],
+    #         description_place=form.cleaned_data['description_place'],
+    #         country=form.cleaned_data['country'],
+    #
+    #     )
+    #     return result

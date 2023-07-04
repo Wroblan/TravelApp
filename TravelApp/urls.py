@@ -24,4 +24,6 @@ urlpatterns = [
     path('country/create', views.CountryCreateView.as_view(), name='country-create'),
     path('Country-update/<pk>', views.CountryUpdateView.as_view(), name="country_update"),
     path('Country-delete/<pk>', views.CountryDeleteView.as_view(), name="country_delete"),
+    path('place/read', views.PlaceReadView.as_view(), name='place_read'),
+    path('place/create', views.PlaceCreateView.as_view(), name='place-create'),
 ]
