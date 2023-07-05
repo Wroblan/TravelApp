@@ -4,6 +4,9 @@ from django.urls import reverse_lazy
 from django.views.generic import View, CreateView, UpdateView, DeleteView
 from AdventureTime import models
 from AdventureTime import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 def hello(request):
   return HttpResponse('Hello, world!')
@@ -56,3 +59,9 @@ class PlaceCreateView(CreateView):
     #
     #     )
     #     return result
+
+class UserCreateView(CreateView):
+    template_name = 'RegisterView.html'
+    form_class = UserCreationForm
+    model = models.User
+    success_url = reverse_lazy('user_read')

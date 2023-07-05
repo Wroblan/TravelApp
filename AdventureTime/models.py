@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User, Group
 
 class Capital(models.Model):
     capital = models.CharField(max_length=50)
@@ -26,12 +27,12 @@ class Place(models.Model):
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     def __str__(self):
         return self.name_place
-class User(models.Model):
-    login = models.CharField(max_length=20, unique=True)
-    password = models.CharField(max_length=20)
-    data_birth = models.DateField()
-    def __str__(self):
-        return self.login
+#class User(User):
+#     login = models.CharField(max_length=20, unique=True)
+#     password = models.CharField(max_length=20)
+#     data_birth = models.DateField()
+#     def __str__(self):
+#         return self.login
 class Category(models.Model):
     category = models.CharField(max_length=30)
     def __str__(self):
