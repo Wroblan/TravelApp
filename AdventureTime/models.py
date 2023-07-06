@@ -22,9 +22,18 @@ class Country(models.Model):
   def __str__(self):
       return self.name_country
 class Place(models.Model):
+    CATEGORY = (
+        ('business','business'),
+        ('nature', 'nature'),
+        ('party time', 'party time'),
+        ('religion', 'religion'),
+        ('adventure', 'adventure'),
+    )
     name_place = models.CharField(max_length=100)
     description_place = models.CharField(max_length=200)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    category =models.CharField(max_length=200, null=True, choices=CATEGORY)
+    likes = models.IntegerField(default=0)
     def __str__(self):
         return self.name_place
 #class User(User):
@@ -33,12 +42,9 @@ class Place(models.Model):
 #     data_birth = models.DateField()
 #     def __str__(self):
 #         return self.login
-class Category(models.Model):
-    category = models.CharField(max_length=30)
-    def __str__(self):
-        return self.category
+
 class Rating(models.Model):
-    rating = models.IntegerField()
+    rating = models.IntegerField(choices=[(i, i) for i in range(1, 7)])
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):

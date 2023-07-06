@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views.generic import View, CreateView, UpdateView, DeleteView
 from AdventureTime import models
@@ -65,3 +65,35 @@ class UserCreateView(CreateView):
     form_class = UserCreationForm
     model = models.User
     success_url = reverse_lazy('user_read')
+
+def search_view(request):
+    form = forms.SearchForm()
+    results = []
+    if request.method == 'POST':
+        form = forms.SearchForm(request.POST)
+        if form.is_valid():
+            place = form.cleaned_data['place']
+            country = form.cleaned_data['country']
+            category = form.cleaned_data['category']
+            if place:
+                places = models.Place.objects.filter(name_place__icontains=place)
+            if country:
+                places = models.Place.objects.filter(country__name_country__icontains=country)
+            if category:
+                places = models.Place.objects.filter(category__icontains=category)
+            results = places
+    return render(request, 'SearchView.html', {'form': form, 'results': results})
+
+def like_place(request, place_id):
+    place = get_object_or_404(models.Place, pk=place_id)
+    place.likes += 1
+    place.save()
+    return HttpResponse('Hello, world!')
+
+
+
+# class Rating(CreateView):
+#     success_url = reverse_lazy('place_read')
+#     form_class = forms.RatingForm
+#     model = models.Rating
+#     template_name = 'place_create.html'
