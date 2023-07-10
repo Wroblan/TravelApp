@@ -26,10 +26,11 @@ urlpatterns = [
     path('hello/', views.hello),
     path('country/read', views.CountryReadView.as_view(), name='country_read'),
     path('country/create', views.CountryCreateView.as_view(), name='country-create'),
-    path('Country-update/<pk>', views.CountryUpdateView.as_view(), name="country_update"),
-    path('Country-delete/<pk>', views.CountryDeleteView.as_view(), name="country_delete"),
+    path('country-update/<pk>', views.CountryUpdateView.as_view(), name="country_update"),
+    path('country-delete/<pk>', views.CountryDeleteView.as_view(), name="country_delete"),
     path('place/read', views.PlaceReadView.as_view(), name='place_read'),
     path('place/create', views.PlaceCreateView.as_view(), name='place-create'),
     path('place/search', views.search_view, name='place-search'),
     path('place/<int:place_id>/like/', views.like_place, name='like_place'),
+    path('place/<int:place_id>/rating/', views.Rating.as_view(), name='rating'),
 ]

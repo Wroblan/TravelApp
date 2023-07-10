@@ -19,8 +19,9 @@ class SearchForm(forms.Form):
     category = forms.CharField(label='Category', max_length=100, required=False)
 
 class RatingForm(forms.ModelForm):
+    #name_place = forms.ModelChoiceField(queryset=models.Place.objects.values_list('name_place'))
     rating = forms.IntegerField(label='Rating', min_value=1, max_value=6, required=False)
     class Meta:
         model = models.Place
         fields = '__all__'
-        exclude = ['rating']
+        exclude = ['rating', 'user', 'likes', 'name_place', 'description_place', 'country', 'category']

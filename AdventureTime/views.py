@@ -1,12 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
-from django.views.generic import View, CreateView, UpdateView, DeleteView
+from django.views.generic import View, CreateView, UpdateView, DeleteView, FormView
 from AdventureTime import models
 from AdventureTime import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 def hello(request):
   return HttpResponse('Hello, world!')
@@ -15,11 +16,12 @@ class CountryReadView(View):
   def get(self, request):
       return render(request, template_name='country_read.html', context={'dane': models.Country.objects.all()})
 
-class CountryCreateView(CreateView):
+class CountryCreateView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('country_read')
     form_class = forms.CountryForm
     model = models.Country
     template_name = 'country_create.html'
+    login_url = "login"
     def form_valid(self, form):
         result = super().form_valid(form)
         models.Country.objects.create(
@@ -31,34 +33,37 @@ class CountryCreateView(CreateView):
 
         )
         return result
-class CountryUpdateView(UpdateView):
+class CountryUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy('country_read')
     form_class = forms.CountryForm
     model = models.Country
     template_name = 'country_create.html'
-class CountryDeleteView(DeleteView):
+    login_url = "login"
+class CountryDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('country_read')
     model = models.Country
     template_name = 'country_delete.html'
+    login_url = "login"
 
 class PlaceReadView(View):
   def get(self, request):
       return render(request, template_name='place_read.html', context={'dane': models.Place.objects.all()})
 
-class PlaceCreateView(CreateView):
+class PlaceCreateView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('place_read')
     form_class = forms.PlaceForm
     model = models.Place
     template_name = 'place_create.html'
-    # def form_valid(self, form):
-    #     result = super().form_valid(form)
-    #     models.Place.objects.create(
-    #         name_place=form.cleaned_data['name_place'],
-    #         description_place=form.cleaned_data['description_place'],
-    #         country=form.cleaned_data['country'],
-    #
-    #     )
-    #     return result
+    login_url = "login"
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        models.Place.objects.create(
+            name_place=form.cleaned_data['name_place'],
+            description_place=form.cleaned_data['description_place'],
+            country=form.cleaned_data['country'],
+
+        )
+        return result
 
 class UserCreateView(CreateView):
     template_name = 'RegisterView.html'
@@ -84,16 +89,27 @@ def search_view(request):
             results = places
     return render(request, 'SearchView.html', {'form': form, 'results': results})
 
+@login_required(login_url='login')
 def like_place(request, place_id):
     place = get_object_or_404(models.Place, pk=place_id)
     place.likes += 1
     place.save()
-    return HttpResponse('Hello, world!')
+    return HttpResponse('Like!')
 
 
+class Rating(LoginRequiredMixin, FormView):
+    success_url = reverse_lazy('place_read')
+    form_class = forms.RatingForm
+    model = models.Rating
+    template_name = 'place_create.html'
+    login_url = "login"
 
-# class Rating(CreateView):
-#     success_url = reverse_lazy('place_read')
-#     form_class = forms.RatingForm
-#     model = models.Rating
-#     template_name = 'place_create.html'
+    # def form_valid(self, form):
+    #     result = super().form_valid(form)
+    #     models.Rating.objects.create(
+    #         rating=form.cleaned_data['rating'],
+    #         user=self.request.user,
+    #         place=form.cleaned_data['place'],
+    #     )
+    #     return result
+

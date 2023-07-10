@@ -47,8 +47,8 @@ class Rating(models.Model):
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 7)])
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self):
-        return self.rating
+    # def __str__(self):
+    #   return self.rating
 class Comment(models.Model):
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
