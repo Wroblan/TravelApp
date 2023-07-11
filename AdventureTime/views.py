@@ -96,20 +96,36 @@ def like_place(request, place_id):
     place.save()
     return HttpResponse('Like!')
 
-
 class Rating(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('place_read')
     form_class = forms.RatingForm
     model = models.Rating
     template_name = 'place_create.html'
     login_url = "login"
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        models.Rating.objects.create(
+            rating=form.cleaned_data['rating'],
+            user=self.request.user,
+            place=models.Place.objects.get(pk=self.kwargs.get('place_id')),
+            #---> In a class-based view, all of the elements from the URL are placed into self.args (if they're non-named groups)
+            # or self.kwargs (for named groups) --> self.kwargs['pk'].
 
-    # def form_valid(self, form):
-    #     result = super().form_valid(form)
-    #     models.Rating.objects.create(
-    #         rating=form.cleaned_data['rating'],
-    #         user=self.request.user,
-    #         place=form.cleaned_data['place'],
-    #     )
-    #     return result
+        )
+        return result
+
+class Comment(LoginRequiredMixin, FormView):
+    success_url = reverse_lazy('place_read')
+    form_class = forms.CommentForm
+    model = models.Comment
+    template_name = 'place_create.html'
+    login_url = "login"
+    def form_valid(self, form):
+        result = super().form_valid(form)
+        models.Comment.objects.create(
+            comment=form.cleaned_data['comment'],
+            user=self.request.user,
+            place=models.Place.objects.get(pk=self.kwargs.get('place_id')),
+        )
+        return result
 

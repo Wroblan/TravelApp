@@ -14,9 +14,12 @@
     <tr>
 {% for place in dane %}
         <td> {{place.id}} </td>
-  <td> {{place.name_place}} </td>
-  <td> {{place.description_place}} </td>
-  <td> {{place.country}} </td>
+        <td> {{place.name_place}} </td>
+        <td> {{place.description_place}} </td>
+        <td> {{place.country}} </td>
+        <td><a href="{% url 'like_place' place_id=place.pk  %}">LIKE!</a></td>
+        <td><a href="{% url 'rating' place_id=place.pk  %}">RATE!</a></td>
+        <td><a href="{% url 'comment' place_id=place.pk  %}">COMMENT!</a></td>
     </tr>
     {% endfor %}
 

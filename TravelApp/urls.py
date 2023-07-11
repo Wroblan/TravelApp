@@ -32,5 +32,7 @@ urlpatterns = [
     path('place/create', views.PlaceCreateView.as_view(), name='place-create'),
     path('place/search', views.search_view, name='place-search'),
     path('place/<int:place_id>/like/', views.like_place, name='like_place'),
-    path('place/<int:place_id>/rating/', views.Rating.as_view(), name='rating'),
+    path('rating/<int:place_id>', views.Rating.as_view(), name='rating'),
+    path('comment/<int:place_id>', views.Comment.as_view(), name='comment'),
+
 ]

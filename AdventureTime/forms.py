@@ -20,8 +20,12 @@ class SearchForm(forms.Form):
 
 class RatingForm(forms.ModelForm):
     #name_place = forms.ModelChoiceField(queryset=models.Place.objects.values_list('name_place'))
-    rating = forms.IntegerField(label='Rating', min_value=1, max_value=6, required=False)
+    # rating = forms.IntegerField(label='Rating', min_value=1, max_value=6, required=False)
     class Meta:
-        model = models.Place
-        fields = '__all__'
-        exclude = ['rating', 'user', 'likes', 'name_place', 'description_place', 'country', 'category']
+        model = models.Rating
+        fields = ['rating']
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = models.Comment
+        fields = ['comment']

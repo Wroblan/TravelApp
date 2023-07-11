@@ -16,12 +16,13 @@
     <tr>
 {% for country in dane %}
         <td> {{country.id}} </td>
-  <td> {{country.name_country}} </td>
-  <td> {{country.desctription}} </td>
-  <td> {{country.capital_city}} </td>
-  <td> {{country.language}} </td>
-  <td> {{country.currency}} </td>
-
+        <td> {{country.name_country}} </td>
+        <td> {{country.desctription}} </td>
+        <td> {{country.capital_city}} </td>
+        <td> {{country.language}} </td>
+        <td> {{country.currency}} </td>
+        <td><a href="{% url 'country_update' pk=country.pk  %}">CHANGE</a></td>
+        <td><a href="{% url 'country_delete' pk=country.pk  %}">DELETE</a></td>
     </tr>
     {% endfor %}
 
