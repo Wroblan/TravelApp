@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.db.models import Avg
 
 def hello(request):
   return HttpResponse('Hello, world!')
@@ -129,3 +130,7 @@ class Comment(LoginRequiredMixin, FormView):
         )
         return result
 
+class Recommendation(View):
+    results = models.Place.objects.values('name_place').annotate(Avg('rating__rating')).order_by('-rating__rating')
+    def get(self, request):
+       return render(request, template_name='rate.html', context={'dane': self.results})

@@ -34,5 +34,6 @@ urlpatterns = [
     path('place/<int:place_id>/like/', views.like_place, name='like_place'),
     path('rating/<int:place_id>', views.Rating.as_view(), name='rating'),
     path('comment/<int:place_id>', views.Comment.as_view(), name='comment'),
+    path('rate', views.Recommendation.as_view(), name='rate'),
 
 ]
