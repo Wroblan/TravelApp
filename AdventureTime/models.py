@@ -48,7 +48,7 @@ class Rating(models.Model):
     place = models.ForeignKey(Place, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     # def __str__(self):
-    #   return self.rating
+    #    return self.rating
 class Comment(models.Model):
     comment = models.CharField(max_length=200)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
