@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Travel App</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="container">
+        <a href="#" class="logo">Travel App</a>
+        <ul>
+          <li><a href="{% url 'home'%}">Home</a></li>
+          <li><a href="{% url 'login'%}">Login</a></li>
+          <li><a href="{% url 'country_read'%}">Countries</a></li>
+          <li><a href="{% url 'place_read'%}">Places</a></li>
+          <li><a href="{% url 'place-search'%}">Search</a></li>
+          <li><a href="{% url 'rate'%}">Rating</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <section id="home" class="hero">
+    <div class="container">
+      <h1>Discover Your Next Adventure</h1>
+      <p>Explore amazing destinations and plan your dream trip.</p>
+      <a href="#destinations" class="btn">Get Started</a>
+    </div>
+  </section>
+  <section id="destinations" class="destinations">
+    <div class="container">
+      <h2>Popular Destinations</h2>
+      <div class="destination-card">
+          <img src="{% static 'images/d.jpg' %}" alt="Destination 1">
+        <h3>Destination 1 - {{ country.name_country }} </h3>
+        <p>Explore the beautiful landscapes and rich culture of Destination 1.</p>
+        <div class="likes">100 Likes</div>
+      </div>
+      <div class="destination-card">
+        <img src="{% static 'images/pari.jpg' %}" alt="Destination 1">
+        <h3>Destination 2</h3>
+        <p>Experience the vibrant city life and delicious cuisine of Destination 2.</p>
+        <div class="likes">50 Likes</div>
+      </div>
+      <div class="destination-card">
+        <img src="images/destination3.jpg" alt="Destination 3">
+        <h3>Destination 3</h3>
+        <p>Relax on the pristine beaches and enjoy water activities in Destination 3.</p>
+        <div class="likes">75 Likes</div>
+      </div>
+    </div>
+  </section>
+  <section id="countries" class="countries">
+    <div class="container">
+      <h2>Popular Countries</h2>
+      <ul>
+        <li>Country 1 </li>
+        <li>Country 2</li>
+        <li>Country 3</li>
+      </ul>
+      <div class="search">
+        <input type="text" placeholder="Search">
+        <button type="submit">Search</button>
+      </div>
+    </div>
+  </section>
+  <section id="about" class="about">
+    <div class="container">
+      <h2>About Us</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida dui in lorem commodo, id cursus purus varius.</p>
+    </div>
+  </section>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Travel App. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

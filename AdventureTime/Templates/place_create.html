@@ -1,16 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>Travel App</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
-{% block content %}
-  <form method="post">
-    {% csrf_token %}
-    <table>{{ form }}</table>
-    <input type="submit" value="Submit" class="btn btn-primary">
-  </form>
-{% endblock %}
+  <header>
+    <nav>
+      <div class="container">
+
+            <a href="#" class="logo">Travel App</a>
+            <ul>
+              <li><a href="{% url 'home'%}">Home</a></li>
+              <li><a href="{% url 'login'%}">Login</a></li>
+              <li><a href="{% url 'country_read'%}">Countries</a></li>
+              <li><a href="{% url 'place_read'%}">Places</a></li>
+              <li><a href="{% url 'place-search'%}">Search</a></li>
+              <li><a href="{% url 'rate'%}">Rating</a></li>
+
+            </ul>
+
+      </div>
+    </nav>
+  </header>
+<body>
+<div class="container">
+    <div class="destination-card">
+        {% block content %}
+          <form method="post">
+            {% csrf_token %}
+            <table>{{ form }}</table>
+            <input type="submit" value="Submit" class="btn btn-primary">
+          </form>
+        {% endblock %}
+    </div>
+</div>
+    <footer>
+    <div class="container">
+      <p>&copy; 2023 Travel App. All rights reserved.</p>
+    </div>
+  </footer>
 </body>
 </html>
