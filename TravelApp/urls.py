@@ -19,10 +19,11 @@ from AdventureTime import views
 from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
+    path('', views.home, name='home'),
     path('admin/', admin.site.urls),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('registration/', views.UserCreateView.as_view(), name="user_read"),
+    path('registration/', views.UserCreateView.as_view(), name="registration"),
     path('hello/', views.hello),
     path('country/read', views.CountryReadView.as_view(), name='country_read'),
     path('country/create', views.CountryCreateView.as_view(), name='country-create'),

@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, sans-serif;
+  background: #009579;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  color: #fff;
+  font-size: 24px;
+  text-decoration: none;
+}
+nav ul {
+  list-style-type: none;
+  display: flex;
+}
+nav ul li {
+  margin-left: 20px;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+.hero {
+  background-image: url("images/hero-background.jpg");
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 200px 0;
+  color: #fff;
+}
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+.hero p {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.btn {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.btn_small {
+  background-color: #333;
+  color: #fff;
+  padding: 1px 6px;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.destinations {
+  padding: 50px 0;
+  text-align: center;
+}
+.destinations h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.destination-card {
+  background-color: #F2F2F2;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+}
+.destination-card img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.likes {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.countries {
+  padding: 50px 0;
+}
+.countries h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.countries ul {
+  list-style-type: none;
+  margin-bottom: 20px;
+}
+.search input {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+.search button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.about {
+  padding: 50px 0;
+  text-align: center;
+}
+.about h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.contact {
+  padding: 50px 0;
+  text-align: center;
+}
+.contact h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.contact form input,
+.contact form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.contact form button {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+footer {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}

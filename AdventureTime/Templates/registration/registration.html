@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login & Registration Form</title>
+  <!---Custom CSS File--->
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <input type="checkbox" id="check">
+    <div class="login form">
+      <header>Sign Up</header>
+      {% block content %}
+        <form method="post">
+          {% csrf_token %}
+          <table>{{ form }}</table>
+          <input type="submit" value="Sign Up" class="button">
+        </form>
+      {% endblock %}
+
+      <div class="signup">
+          <span class="signup">Already have an account?
+           <a href="{% url 'login'}">Login</a>
+          </span>
+      </div>
+    </div>
+
+</div>
+</body>
+</html>
+
+
+
+<!--<body>-->
+<!--  <div class="container">-->
+<!--    <input type="checkbox" id="check">-->
+<!--    <div class="login form">-->
+<!--      <header>Login</header>-->
+<!--      <form action="#">-->
+<!--        {% csrf_token %}-->
+<!--&lt;!&ndash;        {% for field in form %}&ndash;&gt;-->
+<!--&lt;!&ndash;          {{field.label}}&ndash;&gt;-->
+<!--&lt;!&ndash;        {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;        <input type="text" placeholder="Login" > &ndash;&gt;{{ form.username }}-->
+<!--        {{ form.password }}-->
+<!--&lt;!&ndash;        <input type="password" placeholder="Password" > &ndash;&gt;-->
+<!--        <input type="submit" class="submit" value="Login">-->
+<!--      </form>-->
+<!--      <div class="signup">-->
+<!--        <span class="signup">Don't have an account?-->
+<!--         <label for="check">Signup</label>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="registration form">-->
+<!--      <header>Signup</header>-->
+<!--      <form action="post">-->
+<!--        {% csrf_token %}-->
+<!--        <input type="text" placeholder="Username/Login">-->
+<!--        <input type="password" placeholder="Create a password">-->
+<!--        <input type="password" placeholder="Confirm your password">-->
+<!--        <input type="button" class="button" value="Signup">-->
+<!--      </form>-->
+<!--      <div class="signup">-->
+<!--        <span class="signup">Already have an account?-->
+<!--         <label for="check">Login</label>-->
+<!--        </span>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</body>-->
+<!--</html>-->

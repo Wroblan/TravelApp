@@ -10,6 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMix
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 
+def home(request):
+    return render(request, template_name='home.html', context={'country': models.Country.objects.all()})
 def hello(request):
   return HttpResponse('Hello, world!')
 
@@ -67,10 +69,10 @@ class PlaceCreateView(LoginRequiredMixin, FormView):
         return result
 
 class UserCreateView(CreateView):
-    template_name = 'RegisterView.html'
+    template_name = 'registration/registration.html'
     form_class = UserCreationForm
     model = models.User
-    success_url = reverse_lazy('user_read')
+    success_url = reverse_lazy('login')
 
 def search_view(request):
     form = forms.SearchForm()

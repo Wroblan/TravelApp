@@ -1,28 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <title>Travel App</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<table>
-    <tr>
-        <th scope="col"> Place </th>
-        <th scope="col"> Desctription </th>
-        <th scope="col"> Country </th>
-    </tr>
-    <tr>
-{% for place in dane %}
-        <td> {{place.id}} </td>
-        <td> {{place.name_place}} </td>
-        <td> {{place.description_place}} </td>
-        <td> {{place.country}} </td>
-        <td><a href="{% url 'like_place' place_id=place.pk  %}">LIKE!</a></td>
-        <td><a href="{% url 'rating' place_id=place.pk  %}">RATE!</a></td>
-        <td><a href="{% url 'comment' place_id=place.pk  %}">COMMENT!</a></td>
-    </tr>
-    {% endfor %}
+  <header>
+    <nav>
+      <div class="container">
 
-</table>
+            <a href="#" class="logo">Travel App</a>
+            <ul>
+              <li><a href="{% url 'home'%}">Home</a></li>
+              <li><a href="{% url 'login'%}">Login</a></li>
+              <li><a href="{% url 'country_read'%}">Countries</a></li>
+              <li><a href="{% url 'place_read'%}">Places</a></li>
+              <li><a href="{% url 'place-search'%}">Search</a></li>
+              <li><a href="{% url 'rate'%}">Rating</a></li>
+            </ul>
+
+      </div>
+    </nav>
+  </header>
+<body>
+<div class="container">
+    <div class="destination-card">
+        <table class="center">
+            <tr>
+                <th scope="col"> Place </th>
+                <th scope="col"> Desctription </th>
+                <th scope="col"> Country </th>
+            </tr>
+            <tr>
+        {% for place in dane %}
+<!--                <td> {{place.id}} </td>-->
+                <td> {{place.name_place}} </td>
+                <td> {{place.description_place}} </td>
+                <td> {{place.country}} </td>
+                <td> <a class="btn_small" href="{% url 'like_place' place_id=place.pk  %}"> LIKE! </a> </td>
+                <td> <a class="btn_small" href="{% url 'rating' place_id=place.pk  %}"> RATE! </a> </td>
+                <td> <a class="btn_small" href="{% url 'comment' place_id=place.pk  %}"> COMMENT! </a> </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
 </body>
+    <footer>
+    <div class="container">
+      <p>&copy; 2023 Travel App. All rights reserved.</p>
+    </div>
+  </footer>
 </html>
