@@ -11,7 +11,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 
 def home(request):
-    return render(request, template_name='home.html', context={'country': models.Country.objects.all()})
+    result = models.Place.objects.filter(likes__gte=6).order_by('-likes')
+    return render(request, template_name='home.html', context={'place': result})
 def hello(request):
   return HttpResponse('Hello, world!')
 
@@ -49,8 +50,9 @@ class CountryDeleteView(LoginRequiredMixin, DeleteView):
     login_url = "login"
 
 class PlaceReadView(View):
-  def get(self, request):
-      return render(request, template_name='place_read.html', context={'dane': models.Place.objects.all()})
+    results = models.Place.objects.values('name_place').annotate(average=Avg('rating')).order_by('-average')
+    def get(self, request):
+      return render(request, template_name='place_read.html', context={'dane': models.Place.objects.all(), 'results': self.results})
 
 class PlaceCreateView(LoginRequiredMixin, FormView):
     success_url = reverse_lazy('place_read')
@@ -97,10 +99,10 @@ def like_place(request, place_id):
     place = get_object_or_404(models.Place, pk=place_id)
     place.likes += 1
     place.save()
-    return HttpResponse('Like!')
+    return render(request, template_name='place_read.html', context={'dane': models.Place.objects.all()})
 
 class Rating(LoginRequiredMixin, FormView):
-    success_url = reverse_lazy('place_read')
+    success_url = reverse_lazy('rate')
     form_class = forms.RatingForm
     model = models.Rating
     template_name = 'place_create.html'
@@ -133,6 +135,6 @@ class Comment(LoginRequiredMixin, FormView):
         return result
 
 class Recommendation(View):
-    results = models.Place.objects.values('name_place').annotate(Avg('rating__rating')).order_by('-rating__rating')
+    results = models.Place.objects.values('name_place', 'country__name_country').annotate(average = Avg('rating__rating')).order_by('-average')
     def get(self, request):
        return render(request, template_name='rate.html', context={'dane': self.results})

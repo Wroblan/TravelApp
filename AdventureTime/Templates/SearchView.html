@@ -9,8 +9,9 @@
   <header>
     <nav>
       <div class="container">
-
-            <a href="#" class="logo">Travel App</a>
+            <img src="{% static 'images/logo.png' %}" alt="" height="100">
+            <br><br>
+            <a href="#" class="logo">Travel App</a><br><br>
             <ul>
               <li><a href="{% url 'home'%}">Home</a></li>
               <li><a href="{% url 'login'%}">Login</a></li>
@@ -25,21 +26,27 @@
   </header>
 <body>
 <div class="container">
+    <header>Travel Search</header>
     <div class="destination-card">
-    <h1>Travel Search</h1>
     <form method="post" action="{% url 'place-search' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Search</button>
+        <button class="btn" type="submit">Search</button>
     </form>
-    {% if results %}
-        <h2>Results</h2>
-        <ul>
-            {% for place in results %}
-                <li>{{ place.name_place }} ({{ place.country.name_country }}) - ({{ place.category }})</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    </div>
+    </div>
+    <div class="container">
+        <header>Results</header>
+        <div class="destination-card">
+        {% if results %}
+            <ul style="list-style-type:none;">
+                {% for place in results %}
+                    <li>{{ place.name_place }} ({{ place.country.name_country }})</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+        </div>
   </div>
 </div>
     <footer>

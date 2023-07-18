@@ -9,7 +9,9 @@
   <header>
     <nav>
       <div class="container">
-        <a href="#" class="logo">Travel App</a>
+        <img src="{% static 'images/logo.png' %}" alt="" height="100">
+        <br><br>
+        <a href="#" class="logo">Travel App</a><br><br>
         <ul>
           <li><a href="{% url 'home'%}">Home</a></li>
           <li><a href="{% url 'login'%}">Login</a></li>
@@ -27,50 +29,65 @@
     <div class="container">
       <h1>Discover Your Next Adventure</h1>
       <p>Explore amazing destinations and plan your dream trip.</p>
-      <a href="#destinations" class="btn">Get Started</a>
+
+      <a href="#destinations" class="btn">Get Started</a> <br><br><br>
+      <img src="{% static 'images/coco.png' %}" alt="Destination 1" height="400" align="right">
+      <br>
     </div>
   </section>
-  <section id="destinations" class="destinations">
+
+  <section id="destinations2" class="destinations">
     <div class="container">
       <h2>Popular Destinations</h2>
       <div class="destination-card">
-          <img src="{% static 'images/d.jpg' %}" alt="Destination 1">
-        <h3>Destination 1 - {{ country.name_country }} </h3>
-        <p>Explore the beautiful landscapes and rich culture of Destination 1.</p>
-        <div class="likes">100 Likes</div>
+          <img src="{% static 'images/d1.jpg' %}" alt="Destination 1">
       </div>
+      {% for place in place %}
       <div class="destination-card">
-        <img src="{% static 'images/pari.jpg' %}" alt="Destination 1">
-        <h3>Destination 2</h3>
-        <p>Experience the vibrant city life and delicious cuisine of Destination 2.</p>
-        <div class="likes">50 Likes</div>
+
+        <h3>Destination {{ place.name_place }} </h3>
+        <p>Explore the beautiful landscapes and rich culture of {{ place.name_place }} - {{ place.country.name_country }} </p>
+        <div class="likes"> {{ place.likes }} likes </div>
       </div>
-      <div class="destination-card">
-        <img src="images/destination3.jpg" alt="Destination 3">
-        <h3>Destination 3</h3>
-        <p>Relax on the pristine beaches and enjoy water activities in Destination 3.</p>
-        <div class="likes">75 Likes</div>
-      </div>
-    </div>
-  </section>
-  <section id="countries" class="countries">
-    <div class="container">
-      <h2>Popular Countries</h2>
-      <ul>
-        <li>Country 1 </li>
-        <li>Country 2</li>
-        <li>Country 3</li>
-      </ul>
-      <div class="search">
-        <input type="text" placeholder="Search">
-        <button type="submit">Search</button>
-      </div>
-    </div>
-  </section>
-  <section id="about" class="about">
-    <div class="container">
+      {% endfor %}
+      </section>
+<!--      <div class="destination-card">-->
+<!--        <img src="{% static 'images/pari.jpg' %}" alt="Destination 1">-->
+<!--        <h3>Destination 2</h3>-->
+<!--        <p>Experience the vibrant city life and delicious cuisine of Destination 2.</p>-->
+<!--        <div class="likes">50 Likes</div>-->
+<!--      </div>-->
+<!--      <div class="destination-card">-->
+<!--        <img src="images/destination3.jpg" alt="Destination 3">-->
+<!--        <h3>Destination 3</h3>-->
+<!--        <p>Relax on the pristine beaches and enjoy water activities in Destination 3.</p>-->
+<!--        <div class="likes">75 Likes</div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+
+<!--  <section id="countries" class="countries">-->
+<!--    <div class="container">-->
+<!--      <h2>Popular Countries</h2>-->
+<!--      <ul>-->
+<!--        <li>Country 1 {{ place.name_place }}</li>-->
+<!--        <li>Country 2</li>-->
+<!--        <li>Country 3</li>-->
+<!--      </ul>-->
+<!--      <div class="search">-->
+<!--        <input type="text" placeholder="Search">-->
+<!--        <button type="submit">Search</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </section>-->
+<!--  <section id="about" class="about">-->
+<!--    <div class="container">-->
+      <section id="destinations" class="destinations">
       <h2>About Us</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida dui in lorem commodo, id cursus purus varius.</p>
+      <p>Dla kogo: przede wszystkim dla osób, które często podróżują <br>
+          Wady: nie działa offline<br>
+          Zalety: prosta w obsłudze, pozwala śledzić loty w czasie rzeczywistym, aktualne informacje, wskazówki i porady<br>
+          Cena: darmowa.</p>
     </div>
   </section>
   <section id="contact" class="contact">

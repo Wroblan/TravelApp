@@ -9,8 +9,9 @@
   <header>
     <nav>
       <div class="container">
-
-            <a href="#" class="logo">Travel App</a>
+            <img src="{% static 'images/logo.png' %}" alt="" height="100">
+            <br><br>
+            <a href="#" class="logo">Travel App</a><br><br>
             <ul>
               <li><a href="{% url 'home'%}">Home</a></li>
               <li><a href="{% url 'login'%}">Login</a></li>
@@ -25,12 +26,15 @@
   </header>
 <body>
 <div class="container">
+    <header>Places</header>
     <div class="destination-card">
         <table class="center">
             <tr>
                 <th scope="col"> Place </th>
                 <th scope="col"> Desctription </th>
                 <th scope="col"> Country </th>
+                <th scope="col" colspan="2"> Likes </th>
+                <th scope="col"> Rating </th>
             </tr>
             <tr>
         {% for place in dane %}
@@ -38,13 +42,20 @@
                 <td> {{place.name_place}} </td>
                 <td> {{place.description_place}} </td>
                 <td> {{place.country}} </td>
-                <td> <a class="btn_small" href="{% url 'like_place' place_id=place.pk  %}"> LIKE! </a> </td>
-                <td> <a class="btn_small" href="{% url 'rating' place_id=place.pk  %}"> RATE! </a> </td>
-                <td> <a class="btn_small" href="{% url 'comment' place_id=place.pk  %}"> COMMENT! </a> </td>
+                <td> {{place.likes}} </td>
+<!--                <td> {{place.likes}} <a class="btn_small" href="{% url 'like_place' place_id=place.pk  %}"> LIKE! </a> </td>-->
+                <td> <a class="heart" href="{% url 'like_place' place_id=place.pk  %}"><img src="{% static 'images/heart.png' %}" alt="Like"></a></td>
+                <td>
+                    <a class="btn_small" href="{% url 'rating' place_id=place.pk  %}"> RATE! </a> &emsp; &emsp;
+                    <a class="btn_small" href="{% url 'comment' place_id=place.pk  %}"> COMMENT! </a>
+                </td>
+
             </tr>
             {% endfor %}
 
         </table>
+        <br><br>
+        <td><a class="btn" href="{% url 'place-create' %}"> Create new </a></td>
     </div>
 </div>
 </body>

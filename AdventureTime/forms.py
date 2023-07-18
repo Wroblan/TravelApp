@@ -16,7 +16,7 @@ class PlaceForm(forms.ModelForm):
 class SearchForm(forms.Form):
     place = forms.CharField(label='Place', max_length=100,required=False)
     country = forms.CharField(label='Country', max_length=100, required=False)
-    category = forms.CharField(label='Category', max_length=100, required=False)
+    category = forms.ChoiceField(label='Category', choices=models.Place.CATEGORY, required=False)
 
 class RatingForm(forms.ModelForm):
     #name_place = forms.ModelChoiceField(queryset=models.Place.objects.values_list('name_place'))

@@ -25,7 +25,7 @@ nav {
 }
 .logo {
   color: #fff;
-  font-size: 24px;
+  font-size: 64px;
   text-decoration: none;
 }
 nav ul {
@@ -40,7 +40,7 @@ nav ul li a {
   text-decoration: none;
 }
 .hero {
-  background-image: url("images/hero-background.jpg");
+  background-image: url("static/images/back.png");
   background-size: cover;
   background-position: center;
   text-align: center;
@@ -51,6 +51,7 @@ nav ul li a {
   font-size: 36px;
   margin-bottom: 20px;
 }
+
 .hero p {
   font-size: 18px;
   margin-bottom: 30px;
@@ -76,6 +77,8 @@ nav ul li a {
   margin-right: auto;
 }
 
+
+
 table {
   width: 100%;
 }
@@ -85,7 +88,7 @@ table {
   text-align: center;
 }
 .destinations h2 {
-  font-size: 24px;
+  font-size: 32px;
   margin-bottom: 30px;
 }
 .destination-card {
@@ -170,4 +173,10 @@ footer {
   color: #fff;
   text-align: center;
   padding: 20px 0;
+}
+
+.heart {
+    display: block;
+    height: 20px;
+    width: 20px;
 }

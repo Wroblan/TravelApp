@@ -1,16 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
+  <title>Travel App</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<h1>Recommendations</h1>
-<ul>
-    {% for place in dane %}
-    <li>{{ place.name_place }}   (average rating : {{ place.rating__rating__avg }})</li>
-    {% endfor %}
-</ul>
+  <header>
+    <nav>
+      <div class="container">
+            <img src="{% static 'images/logo.png' %}" alt="" height="100">
+            <br><br>
+            <a href="#" class="logo">Travel App</a><br><br>
+            <ul>
+              <li><a href="{% url 'home'%}">Home</a></li>
+              <li><a href="{% url 'login'%}">Login</a></li>
+              <li><a href="{% url 'country_read'%}">Countries</a></li>
+              <li><a href="{% url 'place_read'%}">Places</a></li>
+              <li><a href="{% url 'place-search'%}">Search</a></li>
+              <li><a href="{% url 'rate'%}">Rating</a></li>
+            </ul>
+
+      </div>
+    </nav>
+  </header>
+<body>
+
+<div class="container">
+    <header>Recommendations</header>
+    <div class="destination-card">
+        <table class="center">
+            <tr>
+                <th scope="col"> Place </th>
+                <th scope="col"> Country </th>
+                <th scope="col"> Average rate </th>
+            </tr>
+            <tr>
+            {% for place in dane %}
+                <td> {{ place.name_place }} </td>
+                <td> {{ place.country__name_country }} </td>
+                <td> {{ place.average }} </td>
+            </tr>
+                {% endfor %}
+
+        </table>
+    </div>
+</div>
 </body>
 </html>
