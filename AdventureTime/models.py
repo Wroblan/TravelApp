@@ -23,6 +23,7 @@ class Country(models.Model):
       return self.name_country
 class Place(models.Model):
     CATEGORY = (
+        ('', '----'),
         ('business','business'),
         ('nature', 'nature'),
         ('party time', 'party time'),
@@ -32,7 +33,7 @@ class Place(models.Model):
     name_place = models.CharField(max_length=100)
     description_place = models.CharField(max_length=200)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    category =models.CharField(max_length=200, null=True, choices=CATEGORY)
+    category = models.CharField(max_length=200, default='nature', choices=CATEGORY)
     likes = models.IntegerField(default=0)
     def __str__(self):
         return self.name_place
